@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  type: 
+  category: MyString
   address: MyString
+  city: MyString
+  state: MyString
   hours: MyString
   phone: MyString
   email: MyString
@@ -12,8 +14,10 @@ one:
 
 two:
   name: MyString
-  type: 
+  category: MyString
   address: MyString
+  city: MyString
+  state: MyString
   hours: MyString
   phone: MyString
   email: MyString

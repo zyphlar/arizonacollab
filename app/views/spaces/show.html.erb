@@ -2,12 +2,11 @@
 
 <%= render partial: "space", locals: {space: @space} %>
 
-<%= link_to 'Edit', edit_space_path(@space) %> |
-<%= link_to 'Back', spaces_path %>
+<%= link_to 'Edit', edit_space_path(@space) %>
 
 <h3>Revision history</h3>
 <dl>
-<% @space.versions.each do |v| %>
+<% @space.versions.reverse!.each do |v| %>
   <dt><b><%= v.event.capitalize %> <%= v.created_at %> <%= v.whodunnit if v.whodunnit %></b></dt>
   <dd>
     <% if v.reify %>

@@ -1,0 +1,20 @@
+<div class="marker-container">
+  <h3><%= space.name %></h3>
+  <em><%= space.category %></em>
+
+  <p>
+    <%= space.full_address %><br/>
+
+    <strong>Hours:</strong> <%= space.hours %><br/>
+
+    <strong>Phone:</strong> <%= space.phone %><br/>
+
+    <strong>Email:</strong> <%= space.email %><br/>
+
+    <strong>Website:</strong> <%= link_to space.website, space.website_with_protocol %><br/>
+  </p>
+
+  <p>
+    <%= space.description %>
+  </p>
+</div>

@@ -18,7 +18,7 @@ class SpacesControllerTest < ActionController::TestCase
 
   test "should create space" do
     assert_difference('Space.count') do
-      post :create, space: { address: @space.address, description: @space.description, email: @space.email, hours: @space.hours, name: @space.name, phone: @space.phone, type: @space.type, website: @space.website }
+      post :create, space: { address: @space.address, city: @space.city, state: @space.state, description: @space.description, email: @space.email, hours: @space.hours, name: @space.name, phone: @space.phone, category: @space.category, website: @space.website }
     end
 
     assert_redirected_to space_path(assigns(:space))
@@ -35,7 +35,7 @@ class SpacesControllerTest < ActionController::TestCase
   end
 
   test "should update space" do
-    patch :update, id: @space, space: { address: @space.address, description: @space.description, email: @space.email, hours: @space.hours, name: @space.name, phone: @space.phone, type: @space.type, website: @space.website }
+    patch :update, id: @space, space: { address: @space.address, city: @space.city, state: @space.state, description: @space.description, email: @space.email, hours: @space.hours, name: @space.name, phone: @space.phone, category: @space.category, website: @space.website }
     assert_redirected_to space_path(assigns(:space))
   end
 

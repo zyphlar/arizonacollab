@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009051102) do
+ActiveRecord::Schema.define(version: 20131009120246) do
 
   create_table "spaces", force: true do |t|
     t.string   "name"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20131009051102) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "versions", force: true do |t|

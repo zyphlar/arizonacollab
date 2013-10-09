@@ -5,6 +5,35 @@ class SpacesController < ApplicationController
   # GET /spaces.json
   def index
     @spaces = Space.all
+
+    # Index, downcase, and capitalize the categories
+    dot_index = 0
+    @spaces.group_by{|s| s.category.downcase}.each do |group|
+      dot_color = Space.dot_colors[dot_index]
+      group.last.each do |space|
+        space.category = group.first.capitalize
+        space.dot_color = dot_color
+      end
+      dot_index += 1
+    end
+
+    # Don't bother with generating markers for JSON
+    respond_to do |format|
+      format.html {
+
+        @json = @spaces.to_gmaps4rails do |space, marker|
+          marker.infowindow render_to_string(:partial => "/spaces/marker", :locals => { :space => space})
+          marker.picture({
+                          :picture => "http://maps.google.com/intl/en_us/mapfiles/ms/micons/#{space.dot_color}-dot.png",
+                          :width   => 32,
+                          :height  => 32
+                         })
+          marker.title   space.name
+          marker.json({ :id => space.id })
+        end
+      }
+      format.json #render json
+    end
   end
 
   # GET /spaces/1
@@ -69,6 +98,6 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :type, :address, :hours, :phone, :email, :website, :description)
+      params.require(:space).permit(:name, :category, :address, :city, :state, :hours, :phone, :email, :website, :description)
     end
 end
