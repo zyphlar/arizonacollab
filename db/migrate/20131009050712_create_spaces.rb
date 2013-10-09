@@ -2,7 +2,7 @@ class CreateSpaces < ActiveRecord::Migration
   def change
     create_table :spaces do |t|
       t.string :name
-      t.string :type
+      t.string :category
       t.string :address
       t.string :hours
       t.string :phone

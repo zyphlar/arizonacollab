@@ -1,44 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @space.name %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @space.type %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @space.address %>
-</p>
-
-<p>
-  <strong>Hours:</strong>
-  <%= @space.hours %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @space.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @space.email %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @space.website %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @space.description %>
-</p>
+<%= render partial: "space", locals: {space: @space} %>
 
 <%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
+
+<h3>Revision history</h3>
+<dl>
+<% @space.versions.each do |v| %>
+  <dt><b><%= v.event.capitalize %> <%= v.created_at %> <%= v.whodunnit if v.whodunnit %></b></dt>
+  <dd>
+    <% if v.reify %>
+      <%= render partial: "space", locals: {space: v.reify} %>
+    <% end %>
+  </dd>
+<% end %>
+</dl>
